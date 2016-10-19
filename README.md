@@ -53,7 +53,7 @@
   * [Unity](https://github.com/NIFTYCloud-mbaas/UnityFirstApp)
   * [Monaca](https://github.com/NIFTYCloud-mbaas/MonacaPushApp)
 
-###　1. インストレーション確認
+### 1. インストレーション確認
 
 上記のサンプルを利用して、アプリをビルドします。
 ビルドしたアプリを起動することで、端末情報をinstallationsクラスに登録されます。
@@ -63,7 +63,7 @@
 登録した端末のObjectIdをこちらで確認できます。
 ObjectIdを利用して、端末を絞って配信することが可能。
 
-###　2. GitHubからサンプルをダウンロード
+### 2. GitHubからサンプルをダウンロード
 
 下記リンクをクリックしてプロジェクトをダウンロードします
 
@@ -71,7 +71,7 @@ ObjectIdを利用して、端末を絞って配信することが可能。
 
 ファイルを解凍します。
 
-### 3. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の会員登録とログイン→アプリ作成と設定
+### 3. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)でアプリ作成と設定
 
 * 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
 
@@ -87,7 +87,7 @@ ObjectIdを利用して、端末を絞って配信することが可能。
 
 ![画像5](/readme-img/005.png)
 
-　3. サンプルコードでキーを設定
+### 4. サンプルコードでキーを設定
 
 `send_push.php`　ファイルをエディターで編集します.
 * 先程[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
@@ -98,7 +98,7 @@ ObjectIdを利用して、端末を絞って配信することが可能。
  * このとき、ダブルクォーテーション（`"`）を消さないように注意してください！
 * 書き換え終わったら`command + s`キーで保存をします
 
-　4. 変数設定
+### 5. 変数設定
 
 `send_push.php`　ファイルについて詳細コード解説にて説明します。
 簡単に紹介しますと、`send_push.php`　に `sendPush ($time, $message, $title, $installations)`　メソッドの定義および、そのメソッドを呼び出す実装となっています。
@@ -129,7 +129,7 @@ sendPush("2016-10-18T18:46:57.046Z", "Show mess", "show title", "df3fdDE2******"
 sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
 ```
 
-　5. 実行＆動作確認
+###　6. 実行＆動作確認
 
 コマンドライン（ターミナル）を使って、解答したダイレクトリに移動します。
 `php`コマンドを利用して、ファイルを実行してください。
