@@ -1,6 +1,6 @@
 <?php
 
-function sendPush ($time, $message, $title, $installations) {
+function sendPush ($time, $message, $title) {
 
     //アプリケーションキー指定
     $application_key = 'APPLICATION_KEY';
@@ -25,26 +25,12 @@ function sendPush ($time, $message, $title, $installations) {
     $signature_string .= $header_string;
     $signature = base64_encode(hash_hmac("sha256", $signature_string, $client_key, true));
 
-    // 検索条件
-    if(is_array($installations)){
-      $searchCondition = array(
-        "objectId" => array (
-           "\$inArray" => $installations
-        )
-      );
-    } else {
-      $searchCondition = array (
-        "objectId" => $installations
-      );
-    }
-
     //時間指定
     if ($time == "now" ) {
       $data = array(
         "immediateDeliveryFlag" => true,
         "message" => $message,
-        "title" => $title,
-        "searchCondition" => $searchCondition_groupid
+        "title" => $title
       );
     } else {
       $data = array(
@@ -53,8 +39,7 @@ function sendPush ($time, $message, $title, $installations) {
                           "iso" => $time
                         ),
         "message" => $message,
-        "title" => $title,
-        "searchCondition" => $searchCondition
+        "title" => $title
       );
     }
 
@@ -76,6 +61,7 @@ function sendPush ($time, $message, $title, $installations) {
 
 }
 
-sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
+sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE");
+//sendPush ("now", "メッセージ", "タイトル");
 
 ?>
