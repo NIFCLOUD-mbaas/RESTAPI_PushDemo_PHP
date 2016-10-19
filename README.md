@@ -67,7 +67,7 @@ ObjectIdを利用して、端末を絞って配信することが可能。
 
 下記リンクをクリックしてプロジェクトをダウンロードします
 
-  [RESTAPI_PushDemo_PHP]()
+  [RESTAPI_PushDemo_PHP](https://github.com/NIFTYCloud-mbaas/RESTAPI_PushDemo_PHP/archive/master.zip)
 
 ファイルを解凍します。
 
