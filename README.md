@@ -53,6 +53,18 @@
   * [Unity](https://github.com/NIFTYCloud-mbaas/UnityFirstApp)
   * [Monaca](https://github.com/NIFTYCloud-mbaas/MonacaPushApp)
 
+  * プッシュ通知を準備する際、以下の手順を必ず実行してください。
+  * 「アプリの新規作成」画面が出るのでアプリを作成し、２種類のAPIキー（アプリケーションキーとクライアントキー）を取得します。
+
+  ![画像3](/readme-img/003.png)
+
+  ![画像4](/readme-img/004.png)
+
+  * プッシュ通知の設定し、プッシュ通知の許可およびiOS, Androidのプッシュ通知APIキーを設定します（プッシュ通知サンプルで実施済みの場合、再設定不要）
+
+  ![画像5](/readme-img/005.png)
+
+
 ### 1. インストレーション確認
 
 上記のサンプルを利用して、アプリをビルドします。
@@ -67,29 +79,17 @@ ObjectIdを利用して、端末を絞って配信することが可能。
 
 下記リンクをクリックしてプロジェクトをダウンロードします
 
-  [RESTAPI_PushDemo_PHP]()
+  [RESTAPI_PushDemo_PHP](https://github.com/NIFTYCloud-mbaas/RESTAPI_PushDemo_PHP/archive/master.zip)
 
 ファイルを解凍します。
+ダウンロードしたプロジェクトには以下の二つファイルが入っていることを確認してください。
+ * `send_push_all.php`　REST APIを使って全配信するサンプル
+ * `send_push_condition.php`　REST APIを使って端末を絞り込み配信するサンプル
 
-### 3. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)でアプリ作成と設定
 
-* 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
+### 3. サンプルコードでキーを設定
 
-![画像3](/readme-img/003.png)
-
-* アプリ作成されると下図のような画面になります
-* この２種類のAPIキー（アプリケーションキーとクライアントキー）はクイックスタートで作成したアプリに利用するものおよび、サンプルで利用するキーと同じものになります。
-
-![画像4](/readme-img/004.png)
-
-* 続けてプッシュ通知の設定を行います
-* ここでプッシュ通知の許可およびiOS, Androidのプッシュ通知APIキーを設定します（プッシュ通知サンプルで実施済みの場合、再設定不要）
-
-![画像5](/readme-img/005.png)
-
-### 4. サンプルコードでキーを設定
-
-`send_push.php`　ファイルをエディターで編集します.
+`send_push_condition.php`　および `send_push_all.php` ファイルをエディターで編集します.
 * 先程[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](/readme-img/007.png)
@@ -98,10 +98,28 @@ ObjectIdを利用して、端末を絞って配信することが可能。
  * このとき、ダブルクォーテーション（`"`）を消さないように注意してください！
 * 書き換え終わったら`command + s`キーで保存をします
 
-### 5. 変数設定
+### 4. 全配信を指定
 
-`send_push.php`　ファイルについて詳細コード解説にて説明します。
-簡単に紹介しますと、`send_push.php`　に `sendPush ($time, $message, $title, $installations)`　メソッドの定義および、そのメソッドを呼び出す実装となっています。
+`send_push_all.php`　ファイルを編集します。
+以下のコードの`DELIVERY_TIME`, `MESSAGE`, `TITLE`を編集して、保存してください。
+
+BEFORE
+
+```php
+sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
+```
+
+AFTER(例)
+
+```php
+sendPush ("now", "メッセージ", "タイトル");
+```
+
+
+### 5. 絞り込み配信を指定
+
+`send_push_condition.php`　ファイルについて詳細コード解説にて説明します。
+簡単に紹介しますと、`send_push_condition.php`　に `sendPush ($time, $message, $title, $installations)`　メソッドの定義および、そのメソッドを呼び出す実装となっています。
 
 ```
 sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
@@ -123,17 +141,38 @@ sendPush("now", "Show mess", "show title", [ "df3fdDE2******" , "XDYYdDE2******"
 sendPush("2016-10-18T18:46:57.046Z", "Show mess", "show title", "df3fdDE2******");
 ```
 
-上記ご参考して、`send_push.php`　ファイルにある以下のコードの`DELIVERY_TIME`, `MESSAGE`, `TITLE`, `INSTALLATION`を編集して、保存ください。
+上記ご参考して、`send_push_condition.php`　ファイルにある以下のコードの`DELIVERY_TIME`, `MESSAGE`, `TITLE`, `INSTALLATION`を編集して、保存ください。
 
-```
+BEFORE
+
+```php
 sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
 ```
 
-###　6. 実行＆動作確認
+AFTER(例)
+
+```php
+sendPush("now", "メッセージ", "タイトル", "objectId");
+```
+
+
+### 6. 実行＆動作確認
 
 コマンドライン（ターミナル）を使って、解答したダイレクトリに移動します。
 `php`コマンドを利用して、ファイルを実行してください。
 以下のように実行します。
+
+ * 全配信
+
+```
+php send_push_all.php
+```
+
+ * 絞り込み配信
+
+```
+php send_push_condition.php
+```
 
 正常に登録されて、登録したプッシュ通知IDが表示されることを確認します。
 
@@ -165,7 +204,7 @@ sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
 
 * 共通フォーマットにて、セキュリティを守るための独自仕様としてリクエストヘッダーに毎回シグネチャー作成し、ヘッダーに付ける必要があります。シグネチャーの作成は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/signature.html)ご参照ください。
 
-* `send_push.php`　ファイルにてシグネチャー実装は以下となっています。
+* `send_push_all.php`　`send_push_condition.php`ファイルにてシグネチャー実装は以下となっています。
 
 ```php
 //シグネチャー計算
@@ -181,7 +220,7 @@ $signature = base64_encode(hash_hmac("sha256", $signature_string, $client_key, t
 
 ```
 
-* `send_push.php`　ファイルにてREST APIでヘッダー情報を設定実装は以下となっています。
+* `send_push_all.php`　`send_push_condition.php`ファイルにてREST APIでヘッダー情報を設定実装は以下となっています。
 
 ```php
 //ヘッダー指定
@@ -197,8 +236,7 @@ $headers = array(
 
 * プッシュ通知を登録するためのREST APIを利用することで、サーバからプッシュ通知登録可能です。
 * プッシュ通知登録APIは[こちら](http://mb.cloud.nifty.com/doc/current/rest/push/pushRegistration.html)をご参考ください。
-* プッシュ通知登録REST APIで、`immediateDeliveryFlag`  か　`deliveryTime`, `message`, `title`, `searchCondition` を指定する必要があります。
-*　 `send_push.php`　ファイルにて配信時間判定は以下となっています。
+* プッシュ通知登録REST APIで、`immediateDeliveryFlag`  か　`deliveryTime`, `message`, `title`を指定する必要があります。
 
 ```php
 //時間指定
@@ -206,8 +244,7 @@ if ($time == "now" ) {
   $data = array(
     "immediateDeliveryFlag" => true,
     "message" => $message,
-    "title" => $title,
-    "searchCondition" => $searchCondition_groupid
+    "title" => $title
   );
 } else {
   $data = array(
@@ -216,13 +253,12 @@ if ($time == "now" ) {
                       "iso" => $time
                     ),
     "message" => $message,
-    "title" => $title,
-    "searchCondition" => $searchCondition
+    "title" => $title
   );
 }
 ```
 
-* `send_push.php`　ファイルにて端末絞り込み条件は以下となっています。
+*　端末を絞り込みするために、`searchCondition`を指定する必要があります `send_push_condition.php`　ファイルにて配信時間判定は以下となっています。
 
 ```php
 // 検索条件
@@ -239,7 +275,7 @@ if(is_array($installations)){
 }
 ```
 
-* `send_push.php`　ファイルにて登録リクエスト実装は以下となっています。
+* `send_push_all.php` `send_push_condition.php`　ファイルにて登録リクエスト実装は以下となっています。
 
 ```php
 $options = array('http' => array(
