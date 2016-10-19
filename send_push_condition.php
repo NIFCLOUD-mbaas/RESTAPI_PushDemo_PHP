@@ -77,5 +77,5 @@ function sendPush ($time, $message, $title, $installations) {
 }
 
 sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
-//sendPush("now", "メッセージ", "タイトル", "objectId" );
+//sendPush("now", "メッセージ", "タイトル", "objectId");
 ?>
