@@ -37,7 +37,7 @@
 下記環境で動作確認しております
 * PHP v5.4以降
  * httpsへ通信が必要のため、https通信ができるよう環境をご用意ください。
- * v5.6.x の場合、SSL証明書が検証されますので、正しい証明書をご利用ください。(参考：http://php.net/manual/ja/migration56.openssl.php) 
+ * v5.6.x の場合、SSL証明書が検証されますので、正しい証明書をご利用ください。(参考：http://php.net/manual/ja/migration56.openssl.php)
 
 ### PHP環境準備について
 PHP環境を用意する必要がありますので、以下のいずれかを参考していただき、動作環境をご用意ください。
@@ -78,7 +78,7 @@ __[RESTAPI_PushDemo_PHP](https://github.com/NIFTYCloud-mbaas/RESTAPI_PushDemo_PH
  * `send_push_condition.php`：REST APIを使って端末をobjectIdで絞り込んで配信するサンプル
 
 ### 3. サンプルコードにAPIキーを設定
-`send_push_all.php`および `send_push_condition.php` ファイルをエディターで編集し、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます(参照：[確認事項](調整中))
+`send_push_all.php`および `send_push_condition.php` ファイルをエディターで編集し、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます(参照：[確認事項](https://github.com/NIFTYCloud-mbaas/RESTAPI_PushDemo_PHP/tree/hotfix/README#%E7%A2%BA%E8%AA%8D%E4%BA%8B%E9%A0%85))
 
 * 「`//APIキーの設定`」の部分を編集します
 
@@ -164,10 +164,11 @@ sendPush ("now", "ニフティクラウド mobile backend でプッシュ通知�
 
  ![php2](/readme-img/php_2.png)
 
- 例)登録した端末の「objectId」が「`lOIwqBa*********`」の場合（参照：[objectIdの確認方法](調整中)）
+ 例)登録した端末の「objectId」が「`lOIwqBa*********`」の場合（参照：[objectIdの確認方法](https://github.com/NIFTYCloud-mbaas/RESTAPI_PushDemo_PHP/tree/hotfix/README#1-%E7%99%BB%E9%8C%B2%E3%81%95%E3%82%8C%E3%81%9F%E7%AB%AF%E6%9C%AB%E6%83%85%E5%A0%B1%E3%81%AE%E7%A2%BA%E8%AA%8D)）
 
  ```php
  sendPush ("now", "ニフティクラウド mobile backend でプッシュ通知プッシュ通知！", "PHPでプッシュ通知配信", "lOIwqBa*********");
+ sendPush ("now", "ニフティクラウド mobile backend でプッシュ通知プッシュ通知！", "PHPでプッシュ通知配信", [ "df3fdDE2******" , "XDYYdDE2******" ])
  ```
 
 * コマンドライン（ターミナル）を使って、解凍したフォルダのダイレクトリに移動し、`php`コマンドを利用して、ファイルを実行します
