@@ -144,6 +144,7 @@ sendPush ("now", "ニフティクラウド mobile backend でプッシュ通知�
 * 保存をして`php`コマンドで実行してみてください。指定した通りプッシュ通知が配信されることが確認できます。
 
 ![ダッシュボード1](/readme-img/dashboard_1.png)
+![端末2](/readme-img/iPhone_2.png)
 
 ### 5. 動作確認（絞り込み配信）
 `send_push_condition.php` ファイルを実行します。
@@ -183,7 +184,7 @@ php send_push_condition.php
 ```
 
 * [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボードから、登録したプッシュ通知を確認します(「プッシュ通知」>「一覧」)
-
+* `searchCondition`に指定した`objectId`が確認できます
 ![画像5](/readme-img/kakunin2.png)
 
 * 端末にもプッシュ通知が配信されていることが確認できます
