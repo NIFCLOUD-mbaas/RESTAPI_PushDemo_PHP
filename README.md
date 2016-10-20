@@ -206,9 +206,9 @@ php send_push_condition.php
 * REST APIを利用するため、共通フォーマットを従って、リクエスト作成する必要があります。
 共通フォーマットは[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)をご確認ください。
 
-* 共通フォーマットにて、セキュリティを守るための独自仕様としてリクエストヘッダーに毎回シグネチャー作成し、ヘッダーに付ける必要があります。シグネチャーの作成は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/signature.html)ご参照ください。
+* 共通フォーマットにて、セキュリティを守るための独自仕様としてリクエストヘッダーに毎回シグネチャー作成し、ヘッダーに付ける必要があります。シグネチャーの作成は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/signature.html)をご参照ください。
 
-* `send_push_all.php`　`send_push_condition.php`ファイルにてシグネチャー実装は以下となっています。
+* シグネチャーの実装は以下のようになっています。
 
 ```php
 //シグネチャー計算
@@ -221,10 +221,9 @@ $signature_string .= $fqdn . "\n";
 $signature_string .= "/" . $api_version . "/" . $path . "\n";
 $signature_string .= $header_string;
 $signature = base64_encode(hash_hmac("sha256", $signature_string, $client_key, true));
-
 ```
 
-* `send_push_all.php`　`send_push_condition.php`ファイルにてREST APIでヘッダー情報を設定実装は以下となっています。
+* REST APIでヘッダー情報を設定実装は以下のようになっています。
 
 ```php
 //ヘッダー指定
