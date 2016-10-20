@@ -2,7 +2,7 @@
 
 function sendPush ($time, $message, $title, $installations) {
 
-    //アプリケーションキー指定
+    //APIキーを設定
     $application_key = 'APPLICATION_KEY';
     $client_key      = 'CLIENT_KEY';
 
@@ -76,6 +76,6 @@ function sendPush ($time, $message, $title, $installations) {
 
 }
 
-sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
-//sendPush("now", "メッセージ", "タイトル", "objectId");
+// sendPush ("DELIVERY_TIME", "MESSAGE", "TITLE", "INSTALLATION");
+sendPush("now", "メッセージ", "タイトル", "objectId");
 ?>
